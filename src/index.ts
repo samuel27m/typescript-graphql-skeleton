@@ -4,8 +4,6 @@ import { apolloServer } from './services/ApolloServices/ApolloServerService';
 
 const app = express();
 
-// eslint-disable-next-line prettier/prettier
-// await apolloServer.startrt();
 apolloServer
     .start()
     .then(() => {
