@@ -11,6 +11,14 @@ module.exports = {
       '<rootDir>/src/**/*.{ts,js}',
       '!<rootDir>/src/index.{ts,js}'
   ],
+  coverageThreshold: {
+    global: {
+      branches: 90,
+      functions: 90,
+      lines: 90,
+      statements: 90,
+    },
+  },
   testRegex: '(/tests/.*|(\\.|/)(test|spec))\\.(j|t)sx?$',
   clearMocks: true
 };
