@@ -5,10 +5,14 @@
     "rootDir": "./src",
     "allowJs": false,
     "outDir": "./dist",
+    "lib": ["ES2020", "esnext.asynciterable"],
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false
   },
   "include": [
     "./src/**/*"
