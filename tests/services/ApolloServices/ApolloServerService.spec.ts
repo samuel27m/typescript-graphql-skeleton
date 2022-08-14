@@ -1,15 +1,22 @@
-import { apolloServer } from '../../../src/services/ApolloServices/ApolloServerService';
+import 'reflect-metadata';
+import { createApolloServer } from '../../../src/services/ApolloServices/ApolloServerService';
 
 describe('ApolloServiceService', () => {
-    it('hello resolver', async () => {
-        const query = `{ hello }`;
+    it('recipe resolver', async () => {
+        const apolloServer = await createApolloServer();
+        const query = `{
+          recipes {
+            id
+            title
+            description
+          }
+        }`;
 
         const result = await apolloServer.executeOperation({
             query,
         });
 
-        expect(result.data).toMatchObject({
-            hello: 'world',
-        });
+        // @TODO - Implement SQLite DB for tests
+        expect(result.data).toBeNull();
     });
 });

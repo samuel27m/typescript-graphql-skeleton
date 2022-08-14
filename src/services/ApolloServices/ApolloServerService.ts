@@ -1,23 +1,14 @@
-import { ApolloServer, gql } from 'apollo-server-express';
+import { ApolloServer } from 'apollo-server-express';
+import { buildSchema } from 'type-graphql';
+import { RecipeResolver } from '../../resolvers/RecipeResolver';
 
-// The GraphQL schema
-const typeDefs = gql`
-    type Query {
-        "A simple type for getting started!"
-        hello: String
-    }
-`;
+async function createApolloServer(): Promise<ApolloServer> {
+    const schema = await buildSchema({
+        resolvers: [RecipeResolver],
+    });
+    return new ApolloServer({
+        schema: schema,
+    });
+}
 
-// A map of functions which return data for the schema.
-const resolvers = {
-    Query: {
-        hello: () => 'world',
-    },
-};
-
-const apolloServer = new ApolloServer({
-    typeDefs,
-    resolvers,
-});
-
-export { apolloServer };
+export { createApolloServer };
