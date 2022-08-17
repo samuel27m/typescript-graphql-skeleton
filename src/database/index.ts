@@ -1,5 +1,6 @@
 import { DataSource } from 'typeorm';
 
+// @TODO: Use jest mocks instead of this crap
 const AppDataSource = process.env.JEST_WORKER_ID ? getTestDataSource() : getAppDataSource();
 
 async function initialiseDataSource(): Promise<void> {
