@@ -1,6 +1,6 @@
 import { DataSource } from 'typeorm';
 
-const AppDataSource = process.env.JEST_WORKER_ID ? getTestDataSource() : getDataSource();
+const AppDataSource = process.env.JEST_WORKER_ID ? getTestDataSource() : getAppDataSource();
 
 async function initialiseDataSource(): Promise<void> {
     try {
@@ -10,7 +10,7 @@ async function initialiseDataSource(): Promise<void> {
     }
 }
 
-function getDataSource(): DataSource {
+function getAppDataSource(): DataSource {
     const { DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, DB_DATABASE } = process.env;
     return new DataSource({
         type: 'mysql',
