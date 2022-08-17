@@ -1,22 +1,10 @@
 import 'reflect-metadata';
+import { ApolloServer } from 'apollo-server-express';
 import { createApolloServer } from '../../../src/services/ApolloServices/ApolloServerService';
 
 describe('ApolloServiceService', () => {
-    it('recipe resolver', async () => {
+    it('creates Apollo Server', async () => {
         const apolloServer = await createApolloServer();
-        const query = `{
-          recipes {
-            id
-            title
-            description
-          }
-        }`;
-
-        const result = await apolloServer.executeOperation({
-            query,
-        });
-
-        // @TODO - Implement SQLite DB for tests
-        expect(result.data).toBeNull();
+        expect(apolloServer).toBeInstanceOf(ApolloServer);
     });
 });

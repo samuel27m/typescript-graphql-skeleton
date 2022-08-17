@@ -23,6 +23,7 @@
       "graphql-playground-middleware-express": "^1.7.23",
       "mysql2": "^2.3.3",
       "reflect-metadata": "^0.1.13",
+      "sqlite3": "^5.0.11",
       "type-graphql": "^1.1.1",
       "typeorm": "0.3.7"
    },
