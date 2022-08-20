@@ -9,7 +9,7 @@
       "start:dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/index.ts",
       "test": "jest --runInBand",
       "test:dev": "node --inspect ./node_modules/jest/bin/jest.js --runInBand",
-      "typeorm": "typeorm-ts-node-commonjs"
+      "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
    },
    "author": "Samuel Caçador",
    "license": "MIT",
