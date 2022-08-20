@@ -1,7 +1,9 @@
 import 'reflect-metadata';
 import { createApolloServer } from '../../src/services/ApolloServices/ApolloServerService';
+import { AppDataSource, initialiseDataSource, destroyDataSource } from '../../src/database';
 import { Recipe } from '../../src/entities/Recipe';
-import { AppDataSource, initialiseDataSource } from '../../src/database';
+
+jest.mock('../../src/database');
 
 describe('RecipeResolver', () => {
     beforeAll(async () => {
@@ -16,7 +18,7 @@ describe('RecipeResolver', () => {
     });
 
     afterAll(async () => {
-        await AppDataSource.destroy();
+        await destroyDataSource();
     });
 
     it('gets recipes', async () => {
