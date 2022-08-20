@@ -37,11 +37,11 @@ describe('RecipeResolver', () => {
     });
 
     it('gets recipes', async () => {
-        // create recipe
-        const recipe = new Recipe();
-        recipe.title = 'my test';
-        recipe.description = 'description test';
-
+        // create a recipe
+        const recipe: Omit<Recipe, 'id'> = {
+            title: 'testing',
+            description: 'test',
+        };
         const repository = AppDataSource.getRepository(Recipe);
         await repository.save(recipe);
 
