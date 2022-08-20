@@ -6,8 +6,37 @@ import { Recipe } from '../../src/entities/Recipe';
 jest.mock('../../src/database');
 
 describe('RecipeResolver', () => {
-    beforeAll(async () => {
+    beforeEach(async () => {
         await initialiseDataSource();
+    });
+
+    afterEach(async () => {
+        await destroyDataSource();
+    });
+
+    it('adds a recipe', async () => {
+        const title = 'another one';
+        const apolloServer = await createApolloServer();
+        const query = `mutation {
+          addRecipe(data: {title: "${title}"}) {
+            id,
+            title,
+            description
+          }
+        }`;
+
+        const result = await apolloServer.executeOperation({
+            query,
+        });
+
+        const addedRecipe = result.data?.addRecipe;
+
+        expect(addedRecipe).not.toBeNull();
+        expect(addedRecipe.title).toEqual(title);
+        expect(addedRecipe.description).toBeNull();
+    });
+
+    it('gets recipes', async () => {
         // create recipe
         const recipe = new Recipe();
         recipe.title = 'my test';
@@ -15,13 +44,7 @@ describe('RecipeResolver', () => {
 
         const repository = AppDataSource.getRepository(Recipe);
         await repository.save(recipe);
-    });
 
-    afterAll(async () => {
-        await destroyDataSource();
-    });
-
-    it('gets recipes', async () => {
         const apolloServer = await createApolloServer();
         const query = `{
           recipes {
