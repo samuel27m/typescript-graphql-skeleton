@@ -3,6 +3,7 @@ import { Resolver, Query, Mutation, Arg } from 'type-graphql';
 import { AppDataSource } from '../../database';
 import { Recipe } from '../../entities/Recipe';
 import AddRecipeInput from '../inputs/AddRecipeInput';
+import { validate } from 'class-validator';
 
 @Resolver(Recipe)
 export class RecipeResolver {
@@ -18,6 +19,7 @@ export class RecipeResolver {
 
     @Mutation(() => Recipe)
     async addRecipe(@Arg('data') newRecipeData: AddRecipeInput): Promise<Recipe> {
+        await validate(newRecipeData);
         return await this.repository.save(newRecipeData);
     }
 }
