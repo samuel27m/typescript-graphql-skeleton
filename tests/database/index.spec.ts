@@ -1,10 +1,33 @@
 import { AppDataSource, initialiseDataSource, destroyDataSource } from '../../src/database';
 
 describe('DataSource Utility', () => {
+    let initCount: number = 0;
     const originalConsoleError = console.error;
 
     beforeEach(async () => {
         console.error = jest.fn();
+
+        jest.spyOn(AppDataSource, 'initialize').mockImplementation(async () => {
+            initCount++;
+            if (initCount > 1) {
+                throw new Error('initialize called more than once before destroying.');
+            }
+            Object.defineProperty(AppDataSource, 'isInitialized', {
+                value: true,
+                writable: true,
+                configurable: true,
+            });
+            return AppDataSource;
+        });
+
+        jest.spyOn(AppDataSource, 'destroy').mockImplementation(async () => {
+            initCount = 0;
+            Object.defineProperty(AppDataSource, 'isInitialized', {
+                value: false,
+                writable: true,
+                configurable: true,
+            });
+        });
 
         if (!AppDataSource.isInitialized) {
             await initialiseDataSource();
