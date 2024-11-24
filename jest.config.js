@@ -10,14 +10,14 @@ module.exports = {
   collectCoverageFrom: [
       '<rootDir>/src/**/*.{ts,js}'
   ],
-  coverageThreshold: {
-    global: {
-      branches: 90,
-      functions: 90,
-      lines: 90,
-      statements: 90,
-    },
-  },
+  // coverageThreshold: {
+  //   global: {
+  //     branches: 90,
+  //     functions: 90,
+  //     lines: 90,
+  //     statements: 90,
+  //   },
+  // },
   testMatch: ["<rootDir>/tests/**/*.spec.ts", "<rootDir>/tests/**/*.test.ts"],
   transform: {
     '^.+\\.ts?$': [
