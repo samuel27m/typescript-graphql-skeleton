@@ -8,9 +8,7 @@ module.exports = {
   collectCoverage: true,
   coverageReporters: ['lcov', 'text', 'html'],
   collectCoverageFrom: [
-      '<rootDir>/src/**/*.{ts,js}',
-      '!<rootDir>/src/index.{ts,js}',
-      '!<rootDir>/src/database/**',
+      '<rootDir>/src/**/*.{ts,js}'
   ],
   coverageThreshold: {
     global: {
@@ -21,5 +19,13 @@ module.exports = {
     },
   },
   testMatch: ["<rootDir>/tests/**/*.spec.ts", "<rootDir>/tests/**/*.test.ts"],
+  transform: {
+    '^.+\\.ts?$': [
+      'ts-jest',
+      {
+        tsconfig: 'tsconfig.json', // Specify your TypeScript config file
+      },
+    ],
+  },
   clearMocks: true
 };

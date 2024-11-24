@@ -1,15 +1,18 @@
-import { ApolloServer } from 'apollo-server-express';
+import { ApolloServer } from '@apollo/server';
 import { buildSchema } from 'type-graphql';
 import { RecipeResolver } from '../../graphql/resolvers/RecipeResolver';
 
-async function createApolloServer(): Promise<ApolloServer> {
-    const schema = await buildSchema({
+async function getSchema() {
+    return buildSchema({
         resolvers: [RecipeResolver],
         validate: true,
     });
+}
+
+async function createApolloServer(): Promise<ApolloServer> {
     return new ApolloServer({
-        schema: schema,
+        schema: await getSchema(),
     });
 }
 
-export { createApolloServer };
+export { getSchema, createApolloServer };

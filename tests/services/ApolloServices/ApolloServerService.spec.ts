@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { ApolloServer } from 'apollo-server-express';
+import { ApolloServer } from '@apollo/server';
 import { createApolloServer } from '../../../src/services/ApolloServices/ApolloServerService';
 
 describe('ApolloServiceService', () => {
