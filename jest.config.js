@@ -23,7 +23,7 @@ module.exports = {
     '^.+\\.ts?$': [
       'ts-jest',
       {
-        tsconfig: 'tsconfig.json', // Specify your TypeScript config file
+        tsconfig: 'tsconfig.json',
       },
     ],
   },
